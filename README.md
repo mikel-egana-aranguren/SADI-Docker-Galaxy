@@ -3,7 +3,11 @@ A Docker image containing SADI client and associated tools that can be run in Ga
 
 Comparison with old SADI-Galaxy-Docker, "hence the name"
 
-# NOTES TO DELETE WHEN RELEASED
+
+
+# INSTRUCTIONS
+
+Pull image
 
 job_conf.xml:
 
@@ -27,6 +31,25 @@ job_conf.xml:
 </job_conf>
 
 ```
+
+tool_conf.xml:
+
+```
+    <section name="SADI services" id="SADI">
+	<label text="SADI common utilities" id="SADI-common-utilities"/>
+		<tool file="SADI/sadi_generic.xml"/>
+		<tool file="SADI/RDFSyntaxConverter.xml"/>
+		<tool file="SADI/mergeRDFgraphs.xml"/>
+	<label text="SADI services" id="SADI-services"/>
+		<tool file="SADI/getdbSNPRecordByUniprotID.xml"/>
+	<label text="Other necessary tools" id="Other-necessary-tools"/>
+		<tool file="sparql_galaxy/SPARQLGalaxy.xml"/>
+		<tool file="rdf/rapper.xml"/>
+		<tool file="rdf/tab2rdf.xml"/>
+  </section>
+```
+
+Edit file dataset datatype to RDF
 
 
 
