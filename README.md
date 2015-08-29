@@ -21,12 +21,13 @@ job_conf.xml:
     <handlers>
         <handler id="main"/>
     </handlers>
-    <destinations default="local">>
-      <destination id="local" runner="local"/>
-      <destination id="docker_local" runner="local">
-	<param id="docker_enabled">true</param>
-	<param id="docker_sudo">false</param>
-      </destination>
+    <destinations default="docker_local">
+        <destination id="local" runner="local"/>
+	<destination id="docker_local" runner="local">
+	  <param id="docker_enabled">true</param>
+	  <param id="docker_sudo">false</param>
+	  <param id="docker_net">bridge</param>
+        </destination>
     </destinations>
 </job_conf>
 
@@ -50,6 +51,10 @@ tool_conf.xml:
 ```
 
 Edit file dataset datatype to RDF
+
+Tool generator???
+
+Input validator? Input: SADI input OWL class and RDF input, it outputs the input again if it is is valid input, nothing if invalid
 
 
 

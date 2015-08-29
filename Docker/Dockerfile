@@ -18,11 +18,7 @@ RUN mkdir /sadi
 COPY sadi_generic_client.jar /sadi/
 COPY RDFSyntaxConverter.jar /sadi/
 
-# basic tests
 
-# COPY test-io.sh /sadi/
-# RUN chmod a+x /sadi/test-io.sh
-# ENV PATH $PATH:/sadi
 
 
 
