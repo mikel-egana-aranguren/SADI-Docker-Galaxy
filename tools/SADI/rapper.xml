@@ -1,7 +1,7 @@
 <tool id="rapper" name="RDF Format" version="0.1">
   <description>Converter (Rapper)</description>
   	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v3</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
   <command>
     rapper -q $input_file -i $input_format -o $output_format > $output_file

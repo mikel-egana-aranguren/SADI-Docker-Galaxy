@@ -1,7 +1,7 @@
 <tool id="mergeRDFgraphs" name="Merge RDF Graphs" version="0.1">
   <description>Merge RDF graphs</description>
   	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v3</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
   <command interpreter="python">
       MergeRDFGraphs.py

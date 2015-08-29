@@ -1,7 +1,7 @@
 <tool id="sadi_generic" name="SADI services generic caller" version="0.0.1">
 	<description>Send any input RDF to any SADI service</description>
 	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v3</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
 	
 	<command>java -jar /sadi/sadi_generic_client.jar $url $input > $output 2>/dev/null</command>

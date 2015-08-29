@@ -6,7 +6,7 @@
 <!--  	errwrap.sh is not working, but for this sort of environment it shouldn't matter, since it is less likely to fail, and even less likely to be debugged -->
 	
 	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v3</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
 
 	<command>java -jar sadi/RDFSyntaxConverter.jar $input $format > $output 2>/dev/null</command>

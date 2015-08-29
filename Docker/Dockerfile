@@ -20,6 +20,7 @@ COPY RDFSyntaxConverter.jar /sadi/
 COPY __init__.py /sadi/
 COPY MergeRDFGraphs.py /sadi/ 
 COPY tab2rdf.py /sadi/
+RUN chmod a+x /sadi/*
 ENV PATH $PATH:/sadi
 
 

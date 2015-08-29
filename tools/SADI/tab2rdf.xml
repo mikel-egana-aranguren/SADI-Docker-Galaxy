@@ -5,16 +5,16 @@
   <description>Converter</description>
   
   	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v3</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
-  <command interpreter="python">
+  <command>
     #if $namespace.choose_namespace=="none"
-      tab2rdf.py $input_file $output_file $output_format none
+      python /sadi/tab2rdf.py $input_file $output_file $output_format none
       #for $i in $triples
         ${i.s_col} ${i.p_val} ${i.o_col} ${i.o_type}
       #end for
     #else
-      tab2rdf.py $input_file $output_file $output_format $namespace.choosen_namespace
+      python /sadi/tab2rdf.py $input_file $output_file $output_format $namespace.choosen_namespace
       #for $i in $triples
         ${i.s_col} ${i.p_val} ${i.o_col} ${i.o_type}
       #end for  
