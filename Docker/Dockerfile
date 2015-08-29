@@ -17,8 +17,10 @@ RUN sh update-sun-jre.bin
 RUN mkdir /sadi
 COPY sadi_generic_client.jar /sadi/
 COPY RDFSyntaxConverter.jar /sadi/
-
-
+COPY __init__.py /sadi/
+COPY MergeRDFGraphs.py /sadi/ 
+COPY tab2rdf.py /sadi/
+ENV PATH $PATH:/sadi
 
 
 
