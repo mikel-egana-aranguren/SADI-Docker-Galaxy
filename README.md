@@ -53,7 +53,11 @@ job_conf.xml:
 
 pull docker image
 
-run installed workflow
+run workflow (install workflow from tool shed or from .ga file in workflow/)
+
+workflow: datasets etc
+
+TODO: change SADI tool files and tool_conf ids to sadi_docker
 
 Edit file dataset datatype to RDF
 
