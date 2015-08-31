@@ -4,7 +4,7 @@
 	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
 	</requirements>
 	
-	<command>java -jar /sadi/sadi_generic_client.jar $url $input > $output 2>/dev/null</command>
+	<command>java -jar /sadi/sadi_generic_client.jar $url $input > $output </command>
 		
 	<inputs>
 		<param name="url" type="text" size="250" label="Service URL">

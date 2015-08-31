@@ -43,6 +43,7 @@ job_conf.xml:
         <destination id="local" runner="local"/>
 	<destination id="docker_local" runner="local">
 	  <param id="docker_enabled">true</param>
+	  <param id="docker_memory">6G</param>
 	  <param id="docker_sudo">false</param>
 	  <param id="docker_net">bridge</param>
         </destination>
@@ -51,9 +52,18 @@ job_conf.xml:
 
 ```
 
+(look at job_conf.xml.sample_Advanced for more options)
+
 pull docker image
 
 run workflow (install workflow from tool shed or from .ga file in workflow/)
+
+services:
+
+http://dev.biordf.net/~kawas/cgi-bin/getdbSNPRecordByUniprotID
+http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/uniprot_vocabulary_Resource_hgnc_vocabulary_x-uniprot-inverse_hgnc_vocabulary_Resource
+http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/hgnc_vocabulary_Resource_hgnc_vocabulary_x-omim_omim_vocabulary_Gene
+http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/omim/omim_vocabulary_Gene_omim_vocabulary_article_pubmed_vocabulary_PubMedRecord
 
 workflow: datasets etc
 
