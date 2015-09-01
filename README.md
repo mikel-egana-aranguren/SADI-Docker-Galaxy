@@ -68,6 +68,7 @@ http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/omim/omim_vocabulary_Gene_
 workflow: datasets etc
 
 TODO: change SADI tool files and tool_conf ids to sadi_docker
+TODO: 2>/dev/null
 
 Edit file dataset datatype to RDF
 
