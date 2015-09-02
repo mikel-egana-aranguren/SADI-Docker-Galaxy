@@ -1,7 +1,7 @@
-<tool id="rapper" name="RDF Format" version="0.1">
-  <description>Converter (Rapper)</description>
+<tool id="SADI-Docker-rapper" name="SADI - RDF Format (Rapper)" version="0.1">
+  <description>RDF converter (Rapper)</description>
   	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v6</container>
 	</requirements>
   <command>
     rapper -q $input_file -i $input_format -o $output_format > $output_file
@@ -27,8 +27,6 @@
 **What it does**
 
 This tool converts RDF format from/to N-Triples, Turtle, RDF/XML with Raptor's Rapper.
-
-To setup Rapper, please refer README.txt in this tool's directory.
 
   </help>
 </tool>

@@ -1,10 +1,12 @@
 
 import sys
 import rdflib
+import logging
 from operator import eq
 
 def main(argv):
 
+    logging.basicConfig()
     g = rdflib.Graph()
     g.parse(argv[1])
     results = g.query(argv[2])

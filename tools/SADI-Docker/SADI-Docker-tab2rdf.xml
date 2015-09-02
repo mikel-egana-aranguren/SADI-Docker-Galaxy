@@ -1,11 +1,11 @@
-<tool id="tab2rdf" name="Tab-to-RDF" version="0.1">
+<tool id="SADI-Docker-tab2rdf" name="SADI - Tab-to-RDF" version="0.1">
   
   <!-- Modified by Mikel Egaña Aranguren, very hacky -->
   
   <description>Converter</description>
   
   	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v6</container>
 	</requirements>
   <command>
     #if $namespace.choose_namespace=="none"
@@ -54,7 +54,7 @@
     
 **Important note**
 
-This is a modified version local to biordf
+This is a modified version of Tab2RDF, local to SADI-Docker-Galaxy (http://github.com/mikel-egana-aranguren/SADI-Docker-Galaxy).
 
 **What it does**
 
@@ -80,8 +80,6 @@ Sample Output::
 **Output Format**
 
 Output RDF format is N-Triples by default.
-
-Raptor's Rapper has to be installed to generate the output in Turtle or RDF/XML.
 
   </help>
 </tool>

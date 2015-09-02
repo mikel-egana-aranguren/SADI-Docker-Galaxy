@@ -1,10 +1,10 @@
-<tool id="SPARQLGalaxy" name="Execute an SPARQL query against an RDF file" version="1.0.1">
+<tool id="SADI-Docker-SPARQLGalaxy" name="SADI - Execute an SPARQL query against an RDF file" version="0.1">
 	<description>It executes an SPARQL query against the input RDF file and generates an HTML file with the variables and bound entities</description>
 	  	<requirements>
-	  <container type="docker">mikeleganaaranguren/sadi:v4</container>
+	  <container type="docker">mikeleganaaranguren/sadi:v6</container>
 	</requirements>
 	<command>
-	   python /sadi/sparql.py $ontology "$pasted_query" $out_format > $output 2>/dev/null
+	   python /sadi/sparql.py $ontology "$pasted_query" $out_format > $output 
 	</command>
 	<inputs>
 		<param name="ontology" type="data" format="rdf" label="Input RDF file"/>		   
@@ -25,33 +25,14 @@
 		 </data>
 	</outputs>
 	<help>
-
 	  
-**Important note**
-
-  RDFLib must be installed on the system (http://github.com/RDFLib/rdflib).
-
 **Usage**
 
-  An RDF file (in any format that RDFLib can accept) and a SPARQL query are needed. See bundle for examples.
+  An RDF file (in any format that RDFLib can accept) and a SPARQL query are needed.
 
-**More information**
-
-  Galaxy public instance with SPARQL-Galaxy pre-installed:
-  
-  http://biordf.org:8983/
-  
-  RDF:
-  
-  http://www.w3.org/standards/techs/rdf
-  
-  SPARQL: 
-  
-  http://www.w3.org/standards/techs/sparql
-
-**Contact**
-
-  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+**About**
+	  
+  More information and contact: http://github.com/mikel-egana-aranguren/SADI-Docker-Galaxy.
 
 	</help>
 

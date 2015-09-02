@@ -1,6 +1,8 @@
 # SADI-Docker-Galaxy
 A Docker image containing SADI client and associated tools that can be run in Galaxy
 
+Docker: no dependnecies, no installation
+
 Comparison with old SADI-Galaxy-Docker, "hence the name"
 
 
@@ -14,13 +16,13 @@ git clone SADI-Docker Galaxy and add the tools manually
 tool_conf.xml:
 
 ```
-    <section name="SADI services" id="SADI">
-		<tool file="SADI/sadi_generic.xml"/>
-		<tool file="SADI/RDFSyntaxConverter.xml"/>
-		<tool file="SADI/mergeRDFgraphs.xml"/>
-		<tool file="SADI/SPARQLGalaxy.xml"/>
-		<tool file="SADI/rapper.xml"/>
-		<tool file="SADI/tab2rdf.xml"/>
+    <section id="SADI-Docker" name="Docker SADI services">
+		<tool file="SADI-Docker/SADI-Docker-sadi_client.xml"/>
+		<tool file="SADI-Docker/SADI-Docker-RDFSyntaxConverter.xml"/>
+		<tool file="SADI-Docker/SADI-Docker-mergeRDFgraphs.xml"/>
+		<tool file="SADI-Docker/SADI-Docker-SPARQLGalaxy.xml"/>
+		<tool file="SADI-Docker/SADI-Docker-rapper.xml"/>
+		<tool file="SADI-Docker/SADI-Docker-tab2rdf.xml"/>
     </section>
 ```
 or install through tool shed
@@ -60,17 +62,34 @@ run workflow (install workflow from tool shed or from .ga file in workflow/)
 
 services:
 
-http://dev.biordf.net/~kawas/cgi-bin/getdbSNPRecordByUniprotID
+http://sadiframework.org/services/getKEGGIDFromUniProt
 http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/uniprot_vocabulary_Resource_hgnc_vocabulary_x-uniprot-inverse_hgnc_vocabulary_Resource
 http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/hgnc_vocabulary_Resource_hgnc_vocabulary_x-omim_omim_vocabulary_Gene
 http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/omim/omim_vocabulary_Gene_omim_vocabulary_article_pubmed_vocabulary_PubMedRecord
 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sadi: <http://sadiframework.org/ontologies/predicates.owl#>
+PREFIX lsrn: <http://purl.oclc.org/SADI/LSRN/>
+
+SELECT ?protein ?label ?KEGG
+WHERE { 
+?protein rdf:type lsrn:UniProt_Record . 
+?protein sadi:isEncodedBy ?KEGG . 
+?protein ?prot2hgnc ?hgnc . 
+?hgnc ?hgnc2omim ?omim . 
+?omim ?omim2pubmed ?pubmed . 
+?pubmed rdfs:label ?label . 
+FILTER (regex (?label, 'brain'))
+}
+
 workflow: datasets etc
 
-TODO: change SADI tool files and tool_conf ids to sadi_docker
-TODO: 2>/dev/null
 
-Edit file dataset datatype to RDF
+Edit file dataset datatype to RDF if using the client
+
+To reproduce the workflow ... 
 
 NOTE: 
 
