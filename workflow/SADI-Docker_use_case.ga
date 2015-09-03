@@ -1,0 +1,520 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "SADI-Docker use case", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Convert", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 309, 
+                "top": 203
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Convert characters1", 
+            "tool_state": "{\"__page__\": 0, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null, \"condense\": \"\\\"True\\\"\", \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"strip\": \"\\\"True\\\"\", \"input\": \"null\", \"convert_from\": \"\\\"s\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "658762bb-9052-4dd2-bb6b-e77613a6dcfe"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 304, 
+                "top": 336
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"exp\": \"\\\"http://openlifedata.org/uniprot:\\\"\", \"iterate\": \"\\\"no\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c2421757-1d5d-435c-ac9e-fb036ccd4448"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {
+                "input1": {
+                    "id": 1, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Merge Columns", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 306, 
+                "top": 474
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mergeCols1", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"__rerun_remap_job_id__\": null, \"col2\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"1\\\"}\", \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"col1\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"2\\\"}\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"columns\": \"[]\"}", 
+            "tool_version": "1.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "63b4d2ff-0e1d-449d-aad5-a2ccd033d36a"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {
+                "input": {
+                    "id": 2, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Cut", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 307, 
+                "top": 593
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Cut1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"delimiter\": \"\\\"T\\\"\", \"columnList\": \"\\\"c3\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_version": "1.0.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "f3912f69-b561-4dd5-91f0-1e492e19bb9c"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {
+                "input": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 553, 
+                "top": 481
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"exp\": \"\\\"http://purl.oclc.org/SADI/LSRN/UniProt_Record\\\"\", \"iterate\": \"\\\"no\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c01e5509-2a60-4ad4-848c-b31f9ccfc841"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {
+                "input": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 554, 
+                "top": 637
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"__workflow_invocation_uuid__\": \"\\\"81ac14fc519c11e59bbf5c514f7c7883\\\"\", \"exp\": \"\\\"http://openlifedata.org/uniprot_vocabulary:Resource\\\"\", \"iterate\": \"\\\"no\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "98b1f088-3de5-4dbd-a655-63a630517e1a"
+        }, 
+        "6": {
+            "annotation": "", 
+            "id": 6, 
+            "input_connections": {
+                "input_file": {
+                    "id": 4, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Tab-to-RDF", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 554, 
+                "top": 341
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-tab2rdf", 
+            "tool_state": "{\"__page__\": 0, \"triples\": \"[{\\\"__index__\\\": 0, \\\"o_col\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"2\\\"}, \\\"o_type\\\": \\\"False\\\", \\\"s_col\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"1\\\"}, \\\"p_val\\\": \\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"}]\", \"input_file\": \"null\", \"output_format\": \"\\\"ntriples\\\"\", \"namespace\": \"{\\\"choose_namespace\\\": \\\"none\\\", \\\"__current_case__\\\": 1}\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "a05b8d4f-1b5f-4930-bd77-dfb5163b4556"
+        }, 
+        "7": {
+            "annotation": "", 
+            "id": 7, 
+            "input_connections": {
+                "input_file": {
+                    "id": 5, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Tab-to-RDF", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 552, 
+                "top": 767
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-tab2rdf", 
+            "tool_state": "{\"__page__\": 0, \"triples\": \"[{\\\"__index__\\\": 0, \\\"o_col\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"2\\\"}, \\\"o_type\\\": \\\"False\\\", \\\"s_col\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"1\\\"}, \\\"p_val\\\": \\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"}]\", \"input_file\": \"null\", \"output_format\": \"\\\"ntriples\\\"\", \"namespace\": \"{\\\"choose_namespace\\\": \\\"none\\\", \\\"__current_case__\\\": 1}\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "217c654d-5353-4d93-a6de-c5c5bb205e64"
+        }, 
+        "8": {
+            "annotation": "", 
+            "id": 8, 
+            "input_connections": {
+                "input_file": {
+                    "id": 6, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - RDF Format (Rapper)", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 543, 
+                "top": 201
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-rapper", 
+            "tool_state": "{\"__page__\": 0, \"input_format\": \"\\\"ntriples\\\"\", \"input_file\": \"null\", \"output_format\": \"\\\"rdfxml\\\"\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b5e1600e-a4ef-4ed6-a839-46bd1bcc59b3"
+        }, 
+        "9": {
+            "annotation": "", 
+            "id": 9, 
+            "input_connections": {
+                "input_file": {
+                    "id": 7, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - RDF Format (Rapper)", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 551, 
+                "top": 914
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-rapper", 
+            "tool_state": "{\"__page__\": 0, \"input_format\": \"\\\"ntriples\\\"\", \"input_file\": \"null\", \"output_format\": \"\\\"rdfxml\\\"\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "995db5b3-4e12-48c8-bda0-f961861f008c"
+        }, 
+        "10": {
+            "annotation": "", 
+            "id": 10, 
+            "input_connections": {
+                "input": {
+                    "id": 8, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 880, 
+                "top": 203
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://sadiframework.org/services/getKEGGIDFromUniProt\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "01c2bbe7-a5e1-4bad-8c93-b01c6d0a5c8f"
+        }, 
+        "11": {
+            "annotation": "", 
+            "id": 11, 
+            "input_connections": {
+                "input": {
+                    "id": 9, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 893, 
+                "top": 580
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/uniprot_vocabulary_Resource_hgnc_vocabulary_x-uniprot-inverse_hgnc_vocabulary_Resource\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "ccdd413c-36be-48c3-96fc-4f233208a6b8"
+        }, 
+        "12": {
+            "annotation": "", 
+            "id": 12, 
+            "input_connections": {
+                "input": {
+                    "id": 11, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 898, 
+                "top": 754
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/hgnc_vocabulary_Resource_hgnc_vocabulary_x-omim_omim_vocabulary_Gene\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b7af50a8-a92a-44d9-bf1e-ca90cb69905d"
+        }, 
+        "13": {
+            "annotation": "", 
+            "id": 13, 
+            "input_connections": {
+                "input": {
+                    "id": 12, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 904, 
+                "top": 915
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/omim/omim_vocabulary_Gene_omim_vocabulary_article_pubmed_vocabulary_PubMedRecord\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "3dcb6fc4-4021-4ea6-8e88-31c71d68699d"
+        }, 
+        "14": {
+            "annotation": "", 
+            "id": 14, 
+            "input_connections": {
+                "input_files_0|input_file": {
+                    "id": 13, 
+                    "output_name": "output"
+                }, 
+                "input_files_1|input_file": {
+                    "id": 12, 
+                    "output_name": "output"
+                }, 
+                "input_files_2|input_file": {
+                    "id": 11, 
+                    "output_name": "output"
+                }, 
+                "input_files_3|input_file": {
+                    "id": 10, 
+                    "output_name": "output"
+                }, 
+                "input_files_4|input_file": {
+                    "id": 9, 
+                    "output_name": "output_file"
+                }, 
+                "input_files_5|input_file": {
+                    "id": 8, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Merge RDF Graphs", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 1230, 
+                "top": 319
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-mergeRDFgraphs", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\", \"input_files\": \"[{\\\"__index__\\\": 0, \\\"input_file\\\": null}, {\\\"__index__\\\": 1, \\\"input_file\\\": null}, {\\\"__index__\\\": 2, \\\"input_file\\\": null}, {\\\"__index__\\\": 3, \\\"input_file\\\": null}, {\\\"__index__\\\": 4, \\\"input_file\\\": null}, {\\\"__index__\\\": 5, \\\"input_file\\\": null}]\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "7c24dd55-3032-4329-9fa3-734c963d8ed2"
+        }, 
+        "15": {
+            "annotation": "", 
+            "id": 15, 
+            "input_connections": {
+                "ontology": {
+                    "id": 14, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Execute an SPARQL query against an RDF file", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 1544, 
+                "top": 462
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-SPARQLGalaxy", 
+            "tool_state": "{\"out_format\": \"\\\"html\\\"\", \"__page__\": 0, \"pasted_query\": \"\\\"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \\\\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\\\\nPREFIX sadi: <http://sadiframework.org/ontologies/predicates.owl#>\\\\nPREFIX lsrn: <http://purl.oclc.org/SADI/LSRN/>\\\\n\\\\nSELECT ?protein ?label ?KEGG\\\\nWHERE { \\\\n?protein rdf:type lsrn:UniProt_Record . \\\\n?protein sadi:isEncodedBy ?KEGG . \\\\n?protein ?prot2hgnc ?hgnc . \\\\n?hgnc ?hgnc2omim ?omim . \\\\n?omim ?omim2pubmed ?pubmed . \\\\n?pubmed rdfs:label ?label . \\\\nFILTER (regex (?label, 'brain'))\\\\n}\\\"\", \"__rerun_remap_job_id__\": null, \"ontology\": \"null\", \"chromInfo\": \"\\\"/home/mikel/UPV-EHU/SADI-Docker-Galaxy/galaxy/tool-data/shared/ucsc/chrom/?.len\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "9a453f8c-370e-4ab7-8e45-73cbba721db9"
+        }
+    }, 
+    "uuid": "8e1b472f-1048-49d0-a90a-5faeb29e70c6"
+}
