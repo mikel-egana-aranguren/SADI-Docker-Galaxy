@@ -4,7 +4,7 @@
 	  <container type="docker">mikeleganaaranguren/sadi:v6</container>
 	</requirements>
 	<command>
-	   python /sadi/sparql.py $ontology "$pasted_query" $out_format > $output 
+	   python /sadi/sparql.py $ontology "$pasted_query" $out_format > $output 2>/dev/null
 	</command>
 	<inputs>
 		<param name="ontology" type="data" format="rdf" label="Input RDF file"/>		   
