@@ -4,17 +4,9 @@ SADI-Docker for Galaxy
 About
 -----
 
-A Docker image containing SADI client and associated tools that can be run in Galaxy
+[SADI](http://sadiframework.org/content/about-sadi/) is a framework to define Semantic Web Services that consume and produce [RDF](http://www.w3.org/standards/techs/rdf), and [SADI-Galaxy](https://github.com/mikel-egana-aranguren/SADI-Galaxy) makes SADI services available in the popular [Galaxy](http://galaxyproject.org/) platform. Thus, SADI-Galaxy is a nice SADI client to invoke SADI services in an environment that Biologists use often, and in which SADI services can interact with other tools and services.
 
-Docker: no dependnecies, no installation
-
-Comparison with old SADI-Galaxy-Docker, "hence the name"
-
-[SADI](http://sadiframework.org/content/about-sadi/) is a framework to define Semantic Web Services that consume and output [RDF](http://www.w3.org/standards/techs/rdf), and [SADI-Galaxy](https://github.com/mikel-egana-aranguren/SADI-Galaxy) makes SADI services available in the popular [Galaxy](http://galaxyproject.org/) platform. Thus, SADI-Galaxy is a nice SADI client to invoke SADI services in an environment that Biologists use often.
-
-On the other hand, [Docker](http://www.docker.com/whatisdocker/) is a sort of "virtualisation" environment for deploying applications very easily, without configuration. Therefore I have created a y, so anyone interested in SADI-Galaxy can try it out easily within having to worry about dependencies. 
-
-
+On the other hand, [Docker](http://www.docker.com/whatisdocker/) is a sort of "virtualisation" environment for deploying applications very easily, without configuration or installation of dependencies. Therefore I have created a SADI-Docker, a Docker image containing all the necessary SADI tools, and associated Gaalxy tools, and therefore SADI can be used within Galaxy with a minimal installation (only the Docker image and the Galaxy XML files, see bellow). 
 
 Installation
 -----
@@ -30,10 +22,10 @@ $ sudo service docker.io restart
 
 (You might need to log out and back in, and also I had to install apparmor).
 
-Pull the [SADI-Docker image](https://registry.hub.docker.com/u/mikeleganaaranguren/sadi-galaxy):
+Pull the [SADI-Docker image](https://hub.docker.com/r/mikeleganaaranguren/sadi/):
 
 ```
-$ docker pull mikeleganaaranguren/sadi-galaxy
+$ docker pull mikeleganaaranguren/sadi:v6
 ```
 
 Check that it has been succesfully pulled:
@@ -41,8 +33,8 @@ Check that it has been succesfully pulled:
 ```
 $  docker images
 
-REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-mikeleganaaranguren/sadi-galaxy   latest              xxxxxxxxxxx        3 days ago          895.8 MB
+REPOSITORY                 TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+mikeleganaaranguren/sadi   v6                  0bb03066587d        46 hours ago        580.3 MB
 ```
 
 
@@ -98,12 +90,18 @@ cp job_conf.xml.sample_basic job_conf.xml Add these lines to job_conf.xml (chang
 
 (look at job_conf.xml.sample_Advanced for more options regarding how Galaxy invokes docker containers, there are a lot of options)
 
-The tools can also be installed through the tool shed.
+The tools can also be installed through the tool shed. 
 
 Use case
 ------
 
-run workflow (install workflow from tool shed or from .ga file in workflow/)
+run workflow (install workflow from tool shed https://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998 or from .ga file in workflow/)
+
+upload the file to history (note that if needed Edit file dataset datatype to RDF if using the client)
+
+upload the workflow from file SADI-Docker_use_case.ga: workwflows, import or upload workflwo, choose file
+
+run workflow, choose uniprot ids as input
 
 services:
 
@@ -132,13 +130,13 @@ FILTER (regex (?label, 'brain'))
 workflow: datasets etc
 
 
-Edit file dataset datatype to RDF if using the client
-
-To reproduce the workflow ... 
-
 Tools can also be found at the toolshed workflow can also be found at the toolshed
 
-NOTE: 
+Notes
+-----
+
+Comparison with old SADI-Galaxy-Docker, "hence the name"
+
 
 tab2rdf is a "fork" of the tab2rdf tool from http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools 
 
