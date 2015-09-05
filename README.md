@@ -43,7 +43,7 @@ Download/clone the latest Galaxy version:
 git clone https://github.com/galaxyproject/galaxy.git
 ```
 
-Download/clone this repository and copy the `SADI-Docker` directory to the `tools` directory in galaxy. You can also install the Galaxy tools from within your Galaxy instance as regular Galaxy tools (https://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker/54c48f9ca32b). There are 5 Galaxy tools:
+Download/clone this repository and copy the `SADI-Docker` directory to the `tools` directory in your Galaxy installation. You can also install the Galaxy tools from within your Galaxy instance as regular Galaxy tools (https://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker/54c48f9ca32b). There are 5 Galaxy tools:
 
 * `SADI-Docker-sadi_client`: a SADI client for synchronous SADI services.
 * `SADI-Docker-RDFSyntaxConverter`: a tool to convert between different RDF syntaxes, including production of TSV files.
@@ -80,11 +80,11 @@ Change the galaxy configuration so that it can run Docker images as if they were
     </handlers>
     <destinations default="docker_local">
         <destination id="local" runner="local"/>
-	<destination id="docker_local" runner="local">
-	  <param id="docker_enabled">true</param>
-	  <param id="docker_memory">6G</param>
-	  <param id="docker_sudo">false</param>
-	  <param id="docker_net">bridge</param>
+        <destination id="docker_local" runner="local">
+            <param id="docker_enabled">true</param>
+            <param id="docker_memory">6G</param>
+            <param id="docker_sudo">false</param>
+            <param id="docker_net">bridge</param>
         </destination>
     </destinations>
 </job_conf>
@@ -119,13 +119,13 @@ PREFIX lsrn: <http://purl.oclc.org/SADI/LSRN/>
 
 SELECT ?protein ?label ?KEGG
 WHERE { 
-?protein rdf:type lsrn:UniProt_Record . 
-?protein sadi:isEncodedBy ?KEGG . 
-?protein ?prot2hgnc ?hgnc . 
-?hgnc ?hgnc2omim ?omim . 
-?omim ?omim2pubmed ?pubmed . 
-?pubmed rdfs:label ?label . 
-FILTER (regex (?label, 'brain'))
+    ?protein rdf:type lsrn:UniProt_Record . 
+    ?protein sadi:isEncodedBy ?KEGG . 
+    ?protein ?prot2hgnc ?hgnc . 
+    ?hgnc ?hgnc2omim ?omim . 
+    ?omim ?omim2pubmed ?pubmed . 
+    ?pubmed rdfs:label ?label . 
+    FILTER (regex (?label, 'brain'))
 }
 ```
 
