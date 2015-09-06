@@ -128,23 +128,14 @@ WHERE {
     FILTER (regex (?label, 'brain'))
 }
 ```
+Note that when using the SADI client, the input dataset's datatypes must be edited, stating that the input is an RDF file.
 
 Notes
 -----
 
-Comparison with old SADI-Galaxy-Docker, "hence the name"
+This project is a continuation of [SADI-Galaxy-Docker](http://github.com/mikel-egana-aranguren/SADI-Galaxy-Docker), with the inverse approach, hence the name: SADI-Galaxy-Docker was a complete Galaxy server, configured with SADI tools, within a Docker image; SADI-Docker is a Docker image with only SADI tools, and any Galaxy instance can invoke the image.
 
-(note that if needed Edit file dataset datatype to RDF if using the client)
-
-
-tab2rdf is a "fork" of the tab2rdf tool from http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools 
-
-tab2rdf is a Galaxy tool that can convert tab files (3 columns) to RDF.
-
-This version adds option for the user to define no base URI, ie all the entities of the tab file have their own URI. For example, one can add triples like this:
-
-http://myurl.com#entity http://other_url_p http://foaf.com/my_friend
-
+Tab2rdf is a "fork" of the [tab2rdf](http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools). This version adds option for the user to define no base URI, i.e. all the entities of the tab file have their own URI. 
 
 
 
