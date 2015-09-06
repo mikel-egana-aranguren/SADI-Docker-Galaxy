@@ -93,14 +93,18 @@ Change the galaxy configuration so that it can run Docker images as if they were
 
 (look at job_conf.xml.sample_advanced for more options regarding how Galaxy invokes Docker containers, since there are a lot of options).
 
-Run Galaxy and the tools should appear under `Docker SADI services`. 
+Run Galaxy and the tools should appear under `Docker SADI services`:
+
+![SADI tools](tools.png)
 
 Use case
 ------
 
 In order to test the installation, you can run a pre-defined workflow. Upload the file UniProt_IDs.txt, in `ẁorkflow/`, to your current Galaxy history. Then you can import the workflow in Galaxy in Workflows, Import or Upload Workflow, and choosing the file `workflow/SADI-Docker_use_case.ga` (You can also find the workflow at the tool shed, http://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998). Then run the workflow, choosing the UniProt_IDs.txt dataset as input.
 
-The workflow finds ... 
+The workflow answers the following question: Given a set of UniProt proteins, which ones are related to PubMed abstracts containing the term ``brain'', and what are they KEGG entries? The workflow starts from a simple list of UniProt identifiers, and retrieves different datasets from a regular SADI service (to obtain KEGG entries) and a set of 3 OpenLifeData2SADI services (to obtain PubMed abstracts). The results are then merged and queried to obtain the KEGG entries of proteins that are related to PubMed abstracts that contain the term. 
+
+![SADI workflow](workflow.png)
 
 The SADI services used in the workflow are:
 
