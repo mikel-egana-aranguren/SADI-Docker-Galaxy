@@ -1,0 +1,520 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "The workflow answers the following question: Given a set of UniProt proteins, which ones are related to PubMed abstracts containing the term ``brain'', and what are they KEGG entries? The workflow starts from a simple list of UniProt identifiers, and retrieves different datasets from a regular SADI service (to obtain KEGG entries) and a set of 3 OpenLifeData2SADI services (to obtain PubMed abstracts). The results are then merged and queried to obtain the KEGG entries of proteins that are related to PubMed abstracts that contain the term", 
+    "format-version": "0.1", 
+    "name": "SADI-Docker use case", 
+    "steps": {
+        "0": {
+            "annotation": "Convert white spaces to tabs, so that Galaxy recognises the list of UniProt IDs as a column", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Convert", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 204.9895977973938, 
+                "top": 202.90626764297485
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Convert characters1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"condense\": \"\\\"True\\\"\", \"strip\": \"\\\"True\\\"\", \"input\": \"null\", \"convert_from\": \"\\\"s\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "658762bb-9052-4dd2-bb6b-e77613a6dcfe"
+        }, 
+        "1": {
+            "annotation": "Convert UniProt identifiers to URIs: Add a column with the first part of the URI", 
+            "id": 1, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 199.9895977973938, 
+                "top": 335.9097466468811
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"exp\": \"\\\"http://openlifedata.org/uniprot:\\\"\", \"iterate\": \"\\\"no\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c2421757-1d5d-435c-ac9e-fb036ccd4448"
+        }, 
+        "2": {
+            "annotation": "Convert UniProt identifiers to URIs", 
+            "id": 2, 
+            "input_connections": {
+                "input1": {
+                    "id": 1, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Merge Columns", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 201.96875429153442, 
+                "top": 473.91322565078735
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mergeCols1", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"__rerun_remap_job_id__\": null, \"col2\": \"\\\"\\\"\", \"col1\": \"\\\"\\\"\", \"columns\": \"[]\"}", 
+            "tool_version": "1.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "63b4d2ff-0e1d-449d-aad5-a2ccd033d36a"
+        }, 
+        "3": {
+            "annotation": "Obtain the UniProt URIs", 
+            "id": 3, 
+            "input_connections": {
+                "input": {
+                    "id": 2, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Cut", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 202.99307680130005, 
+                "top": 592.906298160553
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Cut1", 
+            "tool_state": "{\"columnList\": \"\\\"c3\\\"\", \"input\": \"null\", \"delimiter\": \"\\\"T\\\"\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "1.0.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "f3912f69-b561-4dd5-91f0-1e492e19bb9c"
+        }, 
+        "4": {
+            "annotation": "Add a column with the URI of the SADI service input OWL class", 
+            "id": 4, 
+            "input_connections": {
+                "input": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 448.9826703071594, 
+                "top": 480.9097466468811
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"exp\": \"\\\"http://purl.oclc.org/SADI/LSRN/UniProt_Record\\\"\", \"iterate\": \"\\\"no\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c01e5509-2a60-4ad4-848c-b31f9ccfc841"
+        }, 
+        "5": {
+            "annotation": "Add a column with the URI of the SADI service input OWL class", 
+            "id": 5, 
+            "input_connections": {
+                "input": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Add column", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 449.9896283149719, 
+                "top": 636.9166741371155
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "addValue", 
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"exp\": \"\\\"http://openlifedata.org/uniprot_vocabulary:Resource\\\"\", \"iterate\": \"\\\"no\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "98b1f088-3de5-4dbd-a655-63a630517e1a"
+        }, 
+        "6": {
+            "annotation": "Convert to RDF, adding the triple rdf:type input OWL class", 
+            "id": 6, 
+            "input_connections": {
+                "input_file": {
+                    "id": 4, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Tab-to-RDF", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 449.9896283149719, 
+                "top": 340.9097466468811
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-tab2rdf", 
+            "tool_state": "{\"__page__\": 0, \"triples\": \"[{\\\"__index__\\\": 0, \\\"o_col\\\": \\\"\\\", \\\"o_type\\\": \\\"False\\\", \\\"s_col\\\": \\\"\\\", \\\"p_val\\\": \\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"}]\", \"input_file\": \"null\", \"output_format\": \"\\\"ntriples\\\"\", \"namespace\": \"{\\\"choose_namespace\\\": \\\"none\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "a05b8d4f-1b5f-4930-bd77-dfb5163b4556"
+        }, 
+        "7": {
+            "annotation": "Convert to RDF, adding the triple rdf:type input OWL class", 
+            "id": 7, 
+            "input_connections": {
+                "input_file": {
+                    "id": 5, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Tab-to-RDF", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 447.9757122993469, 
+                "top": 766.9166741371155
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-tab2rdf", 
+            "tool_state": "{\"__page__\": 0, \"triples\": \"[{\\\"__index__\\\": 0, \\\"o_col\\\": \\\"\\\", \\\"o_type\\\": \\\"False\\\", \\\"s_col\\\": \\\"\\\", \\\"p_val\\\": \\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"}]\", \"input_file\": \"null\", \"output_format\": \"\\\"ntriples\\\"\", \"namespace\": \"{\\\"choose_namespace\\\": \\\"none\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "217c654d-5353-4d93-a6de-c5c5bb205e64"
+        }, 
+        "8": {
+            "annotation": "Convert to RDF/XML syntax", 
+            "id": 8, 
+            "input_connections": {
+                "input_file": {
+                    "id": 6, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - RDF Format (Rapper)", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 438.9826703071594, 
+                "top": 200.90973138809204
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-rapper", 
+            "tool_state": "{\"__page__\": 0, \"output_format\": \"\\\"rdfxml\\\"\", \"__rerun_remap_job_id__\": null, \"input_format\": \"\\\"ntriples\\\"\", \"input_file\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b5e1600e-a4ef-4ed6-a839-46bd1bcc59b3"
+        }, 
+        "9": {
+            "annotation": "Convert to RDF/XML syntax", 
+            "id": 9, 
+            "input_connections": {
+                "input_file": {
+                    "id": 7, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - RDF Format (Rapper)", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 446.98611879348755, 
+                "top": 913.9132561683655
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-rapper", 
+            "tool_state": "{\"__page__\": 0, \"output_format\": \"\\\"rdfxml\\\"\", \"__rerun_remap_job_id__\": null, \"input_format\": \"\\\"ntriples\\\"\", \"input_file\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "995db5b3-4e12-48c8-bda0-f961861f008c"
+        }, 
+        "10": {
+            "annotation": "Execute SADI service to obtain KEGG entries", 
+            "id": 10, 
+            "input_connections": {
+                "input": {
+                    "id": 8, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 775.9965863227844, 
+                "top": 202.90626764297485
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://sadiframework.org/services/getKEGGIDFromUniProt\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "01c2bbe7-a5e1-4bad-8c93-b01c6d0a5c8f"
+        }, 
+        "11": {
+            "annotation": "Execute SADI service to obtain HGNC entries", 
+            "id": 11, 
+            "input_connections": {
+                "input": {
+                    "id": 9, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 788.9826703071594, 
+                "top": 579.9201531410217
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/uniprot_vocabulary_Resource_hgnc_vocabulary_x-uniprot-inverse_hgnc_vocabulary_Resource\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "ccdd413c-36be-48c3-96fc-4f233208a6b8"
+        }, 
+        "12": {
+            "annotation": "Execute SADI service to obtain OMIM entries", 
+            "id": 12, 
+            "input_connections": {
+                "input": {
+                    "id": 11, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 793.9826703071594, 
+                "top": 753.9132561683655
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/hgnc/hgnc_vocabulary_Resource_hgnc_vocabulary_x-omim_omim_vocabulary_Gene\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b7af50a8-a92a-44d9-bf1e-ca90cb69905d"
+        }, 
+        "13": {
+            "annotation": "Execute SADI service to obtain PubMed entries", 
+            "id": 13, 
+            "input_connections": {
+                "input": {
+                    "id": 12, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI client", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 799.9896283149719, 
+                "top": 914.9201531410217
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-sadi_client", 
+            "tool_state": "{\"url\": \"\\\"http://biordf.org/cgi-bin/SADI/OpenLifeData2SADI/SADI/omim/omim_vocabulary_Gene_omim_vocabulary_article_pubmed_vocabulary_PubMedRecord\\\"\", \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "3dcb6fc4-4021-4ea6-8e88-31c71d68699d"
+        }, 
+        "14": {
+            "annotation": "Merge all the inputs and outputs in single RDF graph: SADI only decorates inputs with new triples, so we can keep track of the whole process via URIs", 
+            "id": 14, 
+            "input_connections": {
+                "input_files_0|input_file": {
+                    "id": 13, 
+                    "output_name": "output"
+                }, 
+                "input_files_1|input_file": {
+                    "id": 12, 
+                    "output_name": "output"
+                }, 
+                "input_files_2|input_file": {
+                    "id": 11, 
+                    "output_name": "output"
+                }, 
+                "input_files_3|input_file": {
+                    "id": 10, 
+                    "output_name": "output"
+                }, 
+                "input_files_4|input_file": {
+                    "id": 9, 
+                    "output_name": "output_file"
+                }, 
+                "input_files_5|input_file": {
+                    "id": 8, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Merge RDF Graphs", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "rdf"
+                }
+            ], 
+            "position": {
+                "left": 1125.9965252876282, 
+                "top": 318.91319513320923
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-mergeRDFgraphs", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input_files\": \"[{\\\"__index__\\\": 0, \\\"input_file\\\": null}, {\\\"__index__\\\": 1, \\\"input_file\\\": null}, {\\\"__index__\\\": 2, \\\"input_file\\\": null}, {\\\"__index__\\\": 3, \\\"input_file\\\": null}, {\\\"__index__\\\": 4, \\\"input_file\\\": null}, {\\\"__index__\\\": 5, \\\"input_file\\\": null}]\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "7c24dd55-3032-4329-9fa3-734c963d8ed2"
+        }, 
+        "15": {
+            "annotation": "Query the merged RDF graph with the actual question", 
+            "id": 15, 
+            "input_connections": {
+                "ontology": {
+                    "id": 14, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SADI - Execute an SPARQL query against an RDF file", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 1439.993106842041, 
+                "top": 461.92015266418457
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "SADI-Docker-SPARQLGalaxy", 
+            "tool_state": "{\"out_format\": \"\\\"html\\\"\", \"__page__\": 0, \"pasted_query\": \"\\\"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \\\\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\\\\nPREFIX sadi: <http://sadiframework.org/ontologies/predicates.owl#>\\\\nPREFIX lsrn: <http://purl.oclc.org/SADI/LSRN/>\\\\n\\\\nSELECT ?protein ?label ?KEGG\\\\nWHERE { \\\\n?protein rdf:type lsrn:UniProt_Record . \\\\n?protein sadi:isEncodedBy ?KEGG . \\\\n?protein ?prot2hgnc ?hgnc . \\\\n?hgnc ?hgnc2omim ?omim . \\\\n?omim ?omim2pubmed ?pubmed . \\\\n?pubmed rdfs:label ?label . \\\\nFILTER (regex (?label, 'brain'))\\\\n}\\\"\", \"ontology\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "9a453f8c-370e-4ab7-8e45-73cbba721db9"
+        }
+    }, 
+    "uuid": "8796e5be-1c91-4f91-9946-02a09a79401d"
+}
