@@ -138,7 +138,7 @@ Notes
 
 * Tab2rdf is a "fork" of the tool [tab2rdf](http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools). This version adds option for the user to define no base URI, i.e. all the entities of the tab file have their own URI. 
 
-When using the SADI client on its own, the input dataset's datatypes must be edited, stating that the input is an RDF file.
+* When using the SADI client on its own, the input dataset's datatypes must be edited, stating that the input is an RDF file.
 
 
 
