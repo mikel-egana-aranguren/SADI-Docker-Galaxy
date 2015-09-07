@@ -4,7 +4,7 @@ SADI-Docker for Galaxy
 About
 -----
 
-[SADI](http://sadiframework.org/content/about-sadi/) is a framework to define Semantic Web Services that consume and produce [RDF](http://www.w3.org/standards/techs/rdf). On the other hand, [Docker](http://www.docker.com/whatisdocker/) is a sort of "virtualisation" environment for deploying applications very easily, without configuration or installation of dependencies. Therefore I have created SADI-Docker, a Docker image containing all the necessary SADI tools that can be easily invoked through the Galaxy tools also provided in this repository. Therefore, SADI can be used within Galaxy with a minimal installation (only the Docker image and the Galaxy XML files, see bellow). Even more, the SADI-Docker can be used as a regular Docker image, runing it as a standalone Operating System pre-configured to invoke SADI services.
+[SADI](http://sadiframework.org/content/about-sadi/) is a framework to define Semantic Web Services that consume and produce [RDF](http://www.w3.org/standards/techs/rdf). On the other hand, [Docker](http://www.docker.com/whatisdocker/) is a container-based virtualisation environment for deploying applications very easily, without configuration or installation of dependencies. Therefore I have created SADI-Docker, a Docker image containing all the necessary programs and dependencies to invoke SADI services: Galaxy tool-files are also provided to execute such programs as regular Galaxy tools. Therefore, SADI can be used within Galaxy with a minimal installation (only the Docker image and the Galaxy XML files, see bellow). Even more, the SADI-Docker image can be used as a regular Docker image, runing it as a standalone Operating System pre-configured to invoke SADI services.
 
 Installation
 -----
@@ -41,16 +41,16 @@ Download/clone the latest Galaxy version:
 $ git clone https://github.com/galaxyproject/galaxy.git
 ```
 
-Download/clone this repository and copy the `SADI-Docker` directory to the `tools` directory in your Galaxy installation. You can also install the Galaxy tools from within your Galaxy instance as regular Galaxy tools from the [Galaxy tool shed](https://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker/54c48f9ca32b). There are five Galaxy tools:
+Download/clone this repository and copy the `tools/SADI-Docker` directory to the `tools` directory in your Galaxy installation. You can also install the Galaxy tools from within your Galaxy instance as regular Galaxy tools from the [Galaxy tool shed](https://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker/54c48f9ca32b). There are five Galaxy tools:
 
 * SADI-Docker-sadi_client: a SADI client for synchronous SADI services.
-* SADI-Docker-RDFSyntaxConverter: a tool to convert between different RDF syntaxes, including TSV files from RDF files.
+* SADI-Docker-RDFSyntaxConverter: a tool to convert between different RDF syntaxes, including from RDF to TSV files.
 * SADI-Docker-mergeRDFgraphs: a tool to merge different RDF graphs into one.
 * SADI-Docker-SPARQLGalaxy: a tool to perform SPARQL queries against RDF files.
-* SADI-Docker-rapper: a tool to convert RDF files to different sintaxes.
+* SADI-Docker-rapper: a tool to convert RDF files to different syntaxes.
 * SADI-Docker-tab2rdf: a tool to produce RDF files from TSV files.
 
-Add the following section to `config/tool_conf.xml` to add the tools to Galaxy (first copy tool_conf.xml.sample to tool_conf.xml):
+Add the following section to `config/tool_conf.xml` to add the tools to Galaxy (first copy `tool_conf.xml.sample` to `tool_conf.xml`):
 
 ```
     <section id="SADI-Docker" name="Docker SADI services">
@@ -64,7 +64,7 @@ Add the following section to `config/tool_conf.xml` to add the tools to Galaxy (
 ```
 
 
-Change the galaxy configuration so that it can run Docker images as if they were regular tools installed in your system. Add a destination, `docker_local`, to your configuration, and make it the default. Copy job_conf.xml.sample_basic to job_conf.xml and add these lines to job_conf.xml (change `docker_memory` if necessary):
+Change the Galaxy configuration so that it can run Docker images as if they were regular tools installed in your system. Add a destination, `docker_local`, to your configuration, and make it the default. Copy `config/job_conf.xml.sample_basic` to `config/job_conf.xml` and add these lines to `config/job_conf.xml` (change `docker_memory` if necessary):
 
 ```
 <?xml version="1.0"?>
@@ -89,7 +89,7 @@ Change the galaxy configuration so that it can run Docker images as if they were
 
 ```
 
-(look at job_conf.xml.sample_advanced for more options regarding how Galaxy invokes Docker containers, since there are a lot of options).
+(look at `job_conf.xml.sample_advanced` for more options regarding how Galaxy invokes Docker containers, since there are a lot of options).
 
 Run Galaxy and the tools should appear under `Docker SADI services`:
 
@@ -98,7 +98,7 @@ Run Galaxy and the tools should appear under `Docker SADI services`:
 Use case
 ------
 
-In order to test the installation, you can run a pre-defined workflow. Upload the file UniProt_IDs.txt, in `ẁorkflow/`, to your current Galaxy history. Then you can import the workflow in Galaxy (Workflows; Import or Upload Workflow; choose file `workflow/SADI-Docker_use_case.ga`). You can also find the workflow at the [tool shed](http://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998). Then run the workflow, choosing the UniProt_IDs.txt dataset as input for the first step.
+In order to test the installation, you can run a pre-defined workflow. Upload the file `ẁorkflow/UniProt_IDs.txt`, to your current Galaxy history. Then you can import the workflow in Galaxy (Workflows; Import or Upload Workflow; choose file `workflow/SADI-Docker_use_case.ga`). You can also find the workflow at the [tool shed](http://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998). Then run the workflow, choosing the UniProt_IDs.txt dataset as input for the first step.
 
 The workflow answers the following question: Given a set of UniProt proteins, which ones are related to PubMed abstracts containing the term ``brain'', and what are they KEGG entries? The workflow starts from a simple list of UniProt identifiers, and retrieves different datasets from a regular SADI service (to obtain KEGG entries) and a set of 3 OpenLifeData2SADI services (to obtain PubMed abstracts). The results are then merged and queried to obtain the KEGG entries of proteins that are related to PubMed abstracts that contain the term. 
 
@@ -134,9 +134,9 @@ WHERE {
 Notes
 -----
 
-This project is a continuation of [SADI-Galaxy-Docker](http://github.com/mikel-egana-aranguren/SADI-Galaxy-Docker), with the inverse approach, hence the name: SADI-Galaxy-Docker was a complete Galaxy server, configured with SADI tools, within a Docker image; SADI-Docker is a Docker image with only SADI tools, and any Galaxy instance can invoke the image.
+* This project is a continuation of [SADI-Galaxy-Docker](http://github.com/mikel-egana-aranguren/SADI-Galaxy-Docker), with the inverse approach, hence the name: SADI-Galaxy-Docker was a complete Galaxy server, configured with SADI tools, within a Docker image; SADI-Docker is a Docker image with only SADI tools, and any Galaxy instance can invoke the image.
 
-Tab2rdf is a "fork" of the [tab2rdf](http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools). This version adds option for the user to define no base URI, i.e. all the entities of the tab file have their own URI. 
+* Tab2rdf is a "fork" of the tool [tab2rdf](http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools). This version adds option for the user to define no base URI, i.e. all the entities of the tab file have their own URI. 
 
 When using the SADI client on its own, the input dataset's datatypes must be edited, stating that the input is an RDF file.
 
