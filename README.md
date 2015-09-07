@@ -63,7 +63,6 @@ Add the following section to `config/tool_conf.xml` to add the tools to Galaxy (
     </section>
 ```
 
-
 Change the Galaxy configuration so that it can run Docker images as if they were regular tools installed in your system. Add a destination, `docker_local`, to your configuration, and make it the default. Copy `config/job_conf.xml.sample_basic` to `config/job_conf.xml` and add these lines to `config/job_conf.xml` (change `docker_memory` if necessary):
 
 ```
@@ -139,6 +138,36 @@ Notes
 * Tab2rdf is a "fork" of the tool [tab2rdf](http://toolshed.g2.bx.psu.edu/view/sem4j/sparql_tools). This version adds option for the user to define no base URI, i.e. all the entities of the tab file have their own URI. 
 
 * When using the SADI client on its own, the input dataset's datatypes must be edited, stating that the input is an RDF file.
+
+* The docker image can also be built without pulling it, using the Dockerfile:
+
+```
+FROM ubuntu:14.04
+MAINTAINER Mikel Egaña Aranguren <mikel.egana.aranguren@gmail.com>
+
+# Install the necessary stuff with apt-get
+
+RUN apt-get update && apt-get install -y wget python python-setuptools raptor2-utils libraptor2-0
+
+# apt-get install python-rdflib is not working so use easy_install instead
+
+RUN easy_install rdflib
+
+# SADI does not like OpenJDK so install Java from http://www.duinsoft.nl/packages.php?t=en
+
+RUN wget http://www.duinsoft.nl/pkg/pool/all/update-sun-jre.bin
+RUN sh update-sun-jre.bin
+
+RUN mkdir /sadi
+COPY sadi_client.jar /sadi/
+COPY RDFSyntaxConverter.jar /sadi/
+COPY __init__.py /sadi/
+COPY MergeRDFGraphs.py /sadi/ 
+COPY tab2rdf.py /sadi/
+COPY sparql.py /sadi/
+RUN chmod a+x /sadi/*
+ENV PATH $PATH:/sadi
+```
 
 
 
