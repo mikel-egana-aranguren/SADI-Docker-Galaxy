@@ -6,6 +6,8 @@ About
 
 [SADI](http://sadiframework.org/content/about-sadi/) is a framework to define Semantic Web Services that consume and produce [RDF](http://www.w3.org/standards/techs/rdf). On the other hand, [Docker](http://www.docker.com/whatisdocker/) is a container-based virtualisation environment for deploying applications very easily, without configuration or installation of dependencies. Therefore I have created SADI-Docker, a Docker image containing all the necessary programs and dependencies to invoke SADI services: Galaxy tool-files are also provided to execute such programs as regular Galaxy tools. Therefore, SADI can be used within Galaxy with a minimal installation (only the Docker image and the Galaxy XML files, see bellow). Even more, the SADI-Docker image can be used as a regular Docker image, runing it as a standalone Operating System pre-configured to invoke SADI services.
 
+Mikel Egaña Aranguren, Mark D. Wilkinson. Enhanced reproducibility of SADI web service workflows with Galaxy and Docker. GigaScience 2015: 4(59). [DOI: 10.1186/s13742-015-0092-3][http://gigascience.biomedcentral.com/articles/10.1186/s13742-015-0092-3]
+
 Installation
 -----
 
@@ -97,7 +99,7 @@ Run Galaxy and the tools should appear under `Docker SADI services`:
 Use case
 ------
 
-In order to test the installation, you can run a pre-defined workflow. Upload the file `ẁorkflow/UniProt_IDs.txt`, to your current Galaxy history. Then you can import the workflow in Galaxy (Workflows; Import or Upload Workflow; choose file `workflow/SADI-Docker_use_case.ga`). You can also find the workflow at the [tool shed](http://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998). Then run the workflow, choosing the UniProt_IDs.txt dataset as input for the first step.
+In order to test the installation, you can run a pre-defined workflow. Upload the file `ẁorkflow/UniProt_IDs.txt` to your current Galaxy history. Then you can import the workflow in Galaxy (Workflows; Import or Upload Workflow; choose file `workflow/SADI-Docker_use_case.ga`). You can also find the workflow at the [tool shed](http://toolshed.g2.bx.psu.edu/view/mikel-egana-aranguren/sadi_docker_workflow/22be3a551998). Then run the workflow, choosing the UniProt_IDs.txt dataset as input for the first step.
 
 The workflow answers the following question: Given a set of UniProt proteins, which ones are related to PubMed abstracts containing the term ``brain'', and what are they KEGG entries? The workflow starts from a simple list of UniProt identifiers, and retrieves different datasets from a regular SADI service (to obtain KEGG entries) and a set of 3 OpenLifeData2SADI services (to obtain PubMed abstracts). The results are then merged and queried to obtain the KEGG entries of proteins that are related to PubMed abstracts that contain the term. 
 
