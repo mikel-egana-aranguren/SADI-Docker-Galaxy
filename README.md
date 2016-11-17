@@ -1,6 +1,8 @@
 SADI-Docker for Galaxy
 ======================
 
+[![DOI](https://zenodo.org/badge/39856817.svg)](https://zenodo.org/badge/latestdoi/39856817)
+
 About
 -----
 
